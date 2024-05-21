@@ -1,4 +1,5 @@
 Project Description: Inverse Sentiment Trading Bot
+
 Overview
 The Inverse Sentiment Trading Bot is an automated trading system designed to analyze stock sentiment from the subreddit r/wallstreetbets and place trades inversely based on this sentiment. The bot aims to capitalize on the contrarian approach by trading against the prevailing sentiment expressed in the subreddit’s comments and posts. It will be capable of dynamically managing the list of monitored stock tickers, executing trades with predefined risk management strategies, and handling administrative commands.
 

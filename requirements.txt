@@ -1,0 +1,6 @@
+praw
+vaderSentiment
+alpaca-trade-api
+schedule
+python-dotenv
+pytest
