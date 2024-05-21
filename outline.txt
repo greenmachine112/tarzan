@@ -1,31 +1,53 @@
 Project Description: Inverse Sentiment Trading Bot
 
 Overview
-The Inverse Sentiment Trading Bot is an automated trading system designed to analyze stock sentiment from the subreddit r/wallstreetbets and place trades inversely based on this sentiment. The bot aims to capitalize on the contrarian approach by trading against the prevailing sentiment expressed in the subreddit’s comments and posts. It will be capable of dynamically managing the list of monitored stock tickers, executing trades with predefined risk management strategies, and handling administrative commands.
+The Inverse Sentiment Trading Bot is an automated trading system designed to analyze stock sentiment from subreddits and place trades inversely based on this sentiment. The bot aims to capitalize on the contrarian approach by trading against the prevailing sentiment expressed in the subreddit’s comments and posts. It will be capable of dynamically managing the list of monitored stock tickers, executing trades with predefined risk management strategies, and handling administrative commands.
+
+Dependincies 
+praw
+vaderSentiment
+alpaca-trade-api
+schedule
+python-dotenv
+pytest
+requests
 
 Key Features
 1. Data Collection with Reddit API
 Sub-problems and Validation:
 Register for Reddit API credentials:
+COMPLETE
 
 Task: Create a Reddit account and apply for API access on Reddit’s developer portal.
 Validation: Ensure API keys are received and functional by testing a basic API request.
 Set up Reddit API with praw:
+COMPLETE
 
 Task: Install praw library and configure API credentials in the bot.
 Validation: Write and run a test script to fetch subreddit information to confirm the API setup.
-Fetch comments and posts from r/wallstreetbets:
+Fetch comments and posts from subreddit of user's choice:
+COMPLETE
 
-Task: Write code to access the subreddit and fetch a specified number of recent comments and posts.
+Task: Create an account on Alpaca and obtain API keys for accessing Alpaca’s services.
+Validation: Verify API keys by making a basic API call to fetch account information.
+Set up Alpaca API with alpaca_trade_api:
+COMPLETE
+
+Task: Install alpaca_trade_api library and configure API credentials in the bot.
+Validation: Write and run a test script to place a mock trade in the paper trading environment.
+Implement trade execution functions:
+COMPLETE
+
+Task: Access the subreddit and fetch a specified number of recent comments and posts.
 Validation: Log the fetched data to ensure comments are correctly retrieved.
 Filter comments to identify stock tickers:
 
 Task: Implement regex or other parsing techniques to extract ticker symbols from comments.
 Validation: Test regex against sample comments to ensure accurate extraction of ticker symbols.
-2. Sentiment Analysis with VADER
+
+Sentiment Analysis with VADER
 Sub-problems and Validation:
 Install and set up VADER sentiment analysis tool:
-
 Task: Install vaderSentiment library and initialize the VADER sentiment analyzer.
 Validation: Run a test script to analyze sample text and verify sentiment scores.
 Preprocess comments:
@@ -39,14 +61,6 @@ Validation: Compare sentiment classification against known examples to ensure ac
 3. Trade Execution with Alpaca API
 Sub-problems and Validation:
 Register for Alpaca API credentials:
-
-Task: Create an account on Alpaca and obtain API keys for accessing Alpaca’s services.
-Validation: Verify API keys by making a basic API call to fetch account information.
-Set up Alpaca API with alpaca_trade_api:
-
-Task: Install alpaca_trade_api library and configure API credentials in the bot.
-Validation: Write and run a test script to place a mock trade in the paper trading environment.
-Implement trade execution functions:
 
 Task: Write functions to place buy and sell orders, including parameters for order type, quantity, and time-in-force.
 Validation: Test trade execution functions with mock trades and log results to ensure correct behavior.
@@ -134,3 +148,87 @@ Monitor and maintain the bot in production:
 
 Task: Implement monitoring tools to track bot performance and health, and plan for regular maintenance and updates.
 Validation: Regularly review monitoring data and logs to ensure the bot is operating as expected and address any issues promptly.
+
+Initializing the bot: 
+Contrabot adapts based on admin preference.
+
+searchParams = {
+    comLimit = 500 #Reddit free tier's maximum CPM = 100. Should be plenty. Can retrieve up to 500 comments per call. 
+    recency = 'all'
+    minKarma = '0'
+    sortBy = 'all'
+    minUpvote = '0' 
+}
+
+searchMode = input("Would you like to bulk scrape(1) comments or search for a specific stock(2)?")
+switch (searchMode)
+If 1 {
+    break;
+    formattedOutput = f"{RED}bulk{RESET} scraping"
+    print(formattedOutput)
+} else if 2 {
+    formattedOutput = f"{RED}stock{RESET} scraping"
+    print(formattedOutput)
+    
+    ticker = input("Enter the ticker: ")
+    while ticker[0] != "$" || len(ticker) != 5 {
+        "Invalid format. Tickers are preceeded with '$' and have 4 characters succeeding.
+        input ticker;
+    }
+
+    while True {
+    userInput = input(f"Enter variations or other search values for {GREEN}{ticker}{RESET} (e.g., 'Tim Apple', 'Fruit Company', 'iPhone'), each separated by '\\n': ").strip()
+    newValues = [value.strip() for value in userInput.split('\n') if value.strip()]
+    values.extend(newValues)
+
+    print("Current list of values: ", values)
+    
+    confirmation = input("Confirm (1) or enter more (0): ").strip()
+        if confirmation == "1" {
+            break;
+        }
+    }
+    formattedOutput = f"searching for {GREEN}{ticker}{RESET} & {RED}{values}{RESET}"
+    print(formattedOutput)
+}
+
+def verifySubredditExists(subredditName):
+    try:
+        subreddit = reddit.subreddit(subredditName)
+        subreddit.title
+        return True
+    except praw.exceptions.PRAWException:
+        return False
+
+while True:
+    subredditName = input("Enter the subreddit you want to scrape (e.g., wallstreetbets): ").strip()
+    if verifySubredditExists(subredditName):
+        print(f"The subreddit {GREEN}'{subredditName}'{RESET} exists.")
+        break
+    else:
+        print(f"The subreddit {RED}'{subredditName}'{RESET} does not exist. Try again.")
+
+def verifyAlpacaKeys(ALPACA_PUBLIC_KEY, ALPACA_PRIVATE_KEY):
+    if len(ALPACA_PUBLIC_KEY) != 20 or len(ALPACA_PRIVATE_KEY) != 32:
+        print("Public Key or Private Key is not the expected length. Network request cancelled. Re-enter keys.")
+        return False
+    
+    try:
+        api = tradeapi.REST(ALPACA_PUBLIC_KEY, ALPACA_PRIVATE_KEY, base_url='https://paper-api.alpaca.markets')
+        account = api.get_account()
+        return True
+    except Exception as e:
+        print(f"Error verifying Alpaca keys: {e}")
+        return False
+
+def getValidAlpacaKeys():
+    while True:
+        ALPACA_PUBLIC_KEY = input("Alpaca Public Key: ").strip()
+        ALPACA_PRIVATE_KEY = input("Alpaca Private Key: ").strip()
+        
+        # Verify the keys
+        if verifyAlpacaKeys(ALPACA_PUBLIC_KEY, ALPACA_PRIVATE_KEY):
+            print("Alpaca keys are valid.")
+            return ALPACA_PUBLIC_KEY, ALPACA_PRIVATE_KEY
+        else:
+            print("Invalid Alpaca keys. Please try again.")

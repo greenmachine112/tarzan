@@ -1,2 +1,7 @@
 venv
-.env
+__pycache__
+alpaca-api-get.py
+.vscode
+positions
+priv.env
+orders
