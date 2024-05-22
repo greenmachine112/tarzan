@@ -43,7 +43,7 @@ To ensure a sufficient number of comments are available for analysis, the ```fet
 The ```filterComments``` function processes the fetched comments to filter out those that match specific criteria, such as containing certain keywords, meeting minimum upvote and karma thresholds, and being within a specified time limit. During this process, the process bar will filter signifigantly more than ```com_limit``` comments on account that the likelihood of fetching exactly ```com_limit``` comments and all of them having at least one keyword is low. To address this, the ```fetchComments``` function has been optimized to return exactly the number of comments specified by ```com_limit```. This ensures the progress bar accurately reflects the number of comments being processed. 
 
 ### Filter Speed
-The initial ![Static Badge](https://img.shields.io/badge/version-v1.0.0-green) of the bot has an average filter rate of ```1.59 comments per second```. This speed is a combination of multiple variables. The first is the speed of the Reddit API, which we can safely geuss is not optimized for high-speed trading, as Reddit comments aren't valuable to the average trading bot. The second is that the current algorithm uses a non-linear search. When inputting variations to search, keep in mind the time complexity increases with 'k' variations. This program is under active development, and a parallel computing or regex style algorithms may be implemented in the future. See [filterComments time complexity](#filteringcomments).
+The initial ![Static Badge](https://img.shields.io/badge/version-v1.0.0-green) of the bot has an average filter rate of ```1.59 comments per second```. This speed is a combination of multiple variables. The first is the speed of the Reddit API, which we can safely geuss is not optimized for high-speed trading, as Reddit comments aren't valuable to the average trading bot. The second is that the current algorithm uses a non-linear search. When inputting variations to search, keep in mind the time complexity increases with 'k' variations. This program is under active development, and a parallel computing or regex style algorithms may be implemented in the future. See [filterComments time complexity](#filtering-comments).
 
 ## API Call Details
  When fetching comments, the bot makes API calls to Reddit as follows:
@@ -68,7 +68,7 @@ The Reddit API's free tier specifies that you may not exceed 60 calls/minute. If
 ### Fetching Comments
 1. Function: ```fetchComments```
 2. Time Complexity: ```O(N)```
-3. Explanation: The function fetches comments from subreddit submissions. The complexity depends on the total number of comments fetched (N).
+3. Explanation: The function fetches comments from subreddit submissions. The complexity depends on the total number of comments fetched ```N```.
 
 ### Filtering Comments
 1. Function: ```filterComments```
