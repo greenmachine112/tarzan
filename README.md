@@ -48,29 +48,29 @@ The initial verision(V1.0.0) of the bot has an average filter rate of 1.59 comme
 ## API Call Details
  When fetching comments, the bot makes API calls to Reddit as follows:
 
-## Submission Fetching
+### Submission Fetching
 The bot makes a single API call to fetch up to 100 submissions. For a com_limit of 1000, this results in 1 API call.
 
-## Comments Fetching
+### Comments Fetching
 Each submission may contain multiple comments. The bot fetches all comments for each submission, which may require additional API calls, especially for submissions with many comments. 
 On average, this results in approximately 1 API call/submission.
 
 **In total, for a com_limit of 1000, the bot typically makes around 101 API calls (1 for submissions and around 100 for comments).**
 
-# Handling Rate Limits
+## Handling Rate Limits
 Reddit enforces API rate limits for their free tier. Authenticated requests are limited to 60/m. This program is under active development and backoff strategies may be implemented in the future.
 
-## Exceeding Rate Limit
+### Exceeding Rate Limit
 The Reddit API's free tier specifies that you may not exceed 60 calls/minute. If the API returns a 429, the program will save what it has filtered to filtered_comments.json, notify the user, and then terminate. You may then analyze the .json file as normal. If you hit the limit, it's safe to wait for a full minute before trying again. This program is under active development, and rate limit monitoring will be implemented in a future release
 
-# Time Complexity Summary for Search and Filter
+## Time Complexity Summary for Search and Filter
 
-## Fetching Comments
+### Fetching Comments
 1. Function: fetchComments
 2. Time Complexity: O(N)
 3. Explanation: The function fetches comments from subreddit submissions. The complexity depends on the total number of comments fetched (N).
 
-## Filtering Comments
+### Filtering Comments
 1. Function: filterComments
 2. Time Complexity: O(i * m * k)
 3. Variables:
@@ -79,7 +79,7 @@ The Reddit API's free tier specifies that you may not exceed 60 calls/minute. If
     k: Number of search term variations
 4. Explination: For each comment, the function converts the text to lowercase (O(m)), and checks if any of the k variations are present (O(k)). Therefore, the time complexity for filtering one comment is O(m * k). Given i comments, the overall complexity is O(i * m * k).
 
-## Combined Complexity
+### Combined Complexity
 The combined time complexity for fetching and filtering is as follows:
 1. Fetching: O(N)
 2. Filtering: O(i * m * k)
@@ -88,7 +88,7 @@ The combined time complexity for fetching and filtering is as follows:
 # Understanding Filter Pass Rate and Keywords
 When the number of keywords used in filtering increases, the filter pass rate tends to decrease. This is because each additional keyword introduces another condition that a comment must meet to pass the filter. Therefore, the more keywords you have, the fewer comments will typically match all the criteria.
 
-## Impact of Keywords on Filter Pass Rate
+### Impact of Keywords on Filter Pass Rate
 **More Keywords**: As the number of keywords increases, each comment has more conditions to satisfy. This generally leads to a lower filter pass rate because fewer comments will meet all the specified criteria.
 **Fewer Keywords**: With fewer keywords, each comment has fewer conditions to satisfy, which typically leads to a higher filter pass rate because more comments will meet the fewer criteria.
 **Calculation of Fetch Count with Keywords**
