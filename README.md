@@ -14,12 +14,18 @@ An inverse sentiment trading bot
     ```bash
     pip install -r requirements.txt
     ```
-Usage
-NOTE: Do not use this model for real trading, as this version suffers from speed issues. It averages a comment filter rate of 1.57 +- .4. This program is under active development, and this issue will be fixed in the future.
-Instructions on how to use the project.
-    To connect Inverse Reddit Trading Bot to an Alpaca brokerage account and place trades you must first get a key pair from Alpaca, and Reddit.
-    Alpaca Registry: (https://app.alpaca.markets/signup)
-    Reddit Registry: (https://www.reddit.com/wiki/api/)
+## Usage
+**NOTE**: Do not use this model for real trading, as this version suffers from time complexity issues. It averages a comment filter rate of 1.57 +- .4 comments per minute. This program is under active development, and this issue will be fixed in the future.
+
+To connect Contrabot to an Alpaca brokerage account and place trades you must first get a key pair from Alpaca, and Reddit.
+1. Alpaca Registry:
+    ```bash
+    (https://app.alpaca.markets/signup)
+    ```
+2. Reddit Registry:
+   ```bash
+    (https://www.reddit.com/wiki/api/)
+    ```
     Once you have the keys, load them into '.env', and verify 'config.py' and all files that import from it. 
     NOTE: Unless you want to trade using real funds, make sure the base Alpaca url's host is 'paper-api.alpaca.markets'. This url uses demo funds that do not exist. I highly recommend not giving the bot your funds, unless you'd like to personally pay the salary of a Wall Street banker on accident like me.
 Example commands and expected output.
