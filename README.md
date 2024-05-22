@@ -38,7 +38,7 @@ After obtaining the keys, load them into the ```.env ``` file and verify the con
    python main.py
    ```
 
-**NOTE**: Unless you want to trade using real funds, make sure the base Alpaca url's host is ```paper-api.alpaca.markets```. I highly recommend not giving the bot your funds, unless you'd like to, personally, pay the salary of a Wall Street banker on accident.
+**NOTE**: Unless you want to trade using real funds, make sure the base Alpaca url's host is ```paper-api.alpaca.markets```. I highly recommend **not** giving the bot your funds, unless you'd like to, personally, pay the salary of a Wall Street banker on accident.
 
 ## Commands
 
