@@ -1,3 +1,5 @@
+# Contrabot ![Static Badge](https://img.shields.io/badge/version-v1.0.0-green)
+An inverse sentiment trading bot
 Installation
 Dependencies
 Step-by-step guide on how to install the project and dependencies.
