@@ -1,12 +1,15 @@
 import os
 from dotenv import dotenv_values
 
-# path in root
-# env_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'priv.env')
-env_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), '.env')
+#path in root
+#env_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'priv.env')
+envPath = os.path.join(os.path.dirname(os.path.dirname(__file__)), '.env')
 
 #load
-config = dotenv_values(env_path)
+config = dotenv_values(envPath)
+
+#manual set up you mf
+os.environ.update(config)
 
 #fetch
 REDDIT_CLIENT_ID = os.getenv('REDDIT_CLIENT_ID')

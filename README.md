@@ -122,5 +122,21 @@ The ```.json``` file generated from the fetched and filtered comments can be qui
 3. **Estimating Total Comments**: To quickly estimate the total number of comments in your ```.json``` file, you can use the following approximation:
 ```totalComments = linesInJson / 6```
 
+## Sentiment
+To analyze the sentiment of comment bodies, they are run through the ```vaderSentiment``` transformer
+
+### Sentiment Analysis Algorithm
+The sentiment analysis has been updated to, in addition to single variable analysis, weigh comments based on the number of upvotes. This means that comments with more upvotes have a greater influence on the overall sentiment score. ```weightedOverallSentiment``` is calculated by multiplying the vader output by the ```score``` value of a given comment. This ensures that comments with higher upvotes, which likely represent more widely held opinions, have a greater impact on the overall sentiment analysis.
+
+### Example Output
+The updated ```sentiment_analysis.py``` now provides the following outputs:
+
+**Number of each sentiment type**: Displays the count of positive, neutral, and negative comments.
+**Unweighted overall sentiment**: Shows the overall sentiment without considering the upvotes.
+**Weighted overall sentiment**: Shows the overall sentiment weighted by the number of upvotes.
+**Stock purchase side**: Recommends a trading action (BUY/CALL or SELL/SHORT) based on the inverse of the weighted overall sentiment.
+
+NOTE: The inverse trading strategy may be reversed, or otherwise modified, simply by setting ```stockPurchaseSide``` equal to the side that correspond with the popular sentiment
+
 ## Profanity 
 Comments fetched from subreddits, especially from communities like ```r/wallstreetbets```, may contain profane or offensive language. These communities are known for their unfiltered and often crude discussions. They refer to themselves as 'apes', which gives you an idea of their vernacular. Users should be prepared for potentially explicit content when reviewing the fetched comments. **Viewer discretion is advised**
