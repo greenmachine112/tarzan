@@ -100,8 +100,7 @@ Where:
 ```𝐶``` = Number of comments requested by the user
 ```𝑃``` = Estimated filter pass rate (inverse relationship with ```k``` keywords)
 
-Example
-If the user requests 1000 comments and the estimated filter pass rate is 0.2 with a certain number of keywords, the program will fetch: ```𝐹 = 1000/0.2 = 500```
+**Example**: If the user requests 1000 comments and the estimated filter pass rate is 0.2 with a certain number of keywords, the program will fetch: ```𝐹 = 1000/0.2 = 500```
 If the number of keywords increases and the filter pass rate drops to 0.1, the program will fetch: ```𝐹 = 1000/0.1 = 1000```
 
 ## .json Formatting
