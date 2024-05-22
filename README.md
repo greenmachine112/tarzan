@@ -93,12 +93,12 @@ When the number of keywords used in filtering increases, the filter pass rate te
 1. **Fewer Keywords**: With fewer keywords, each comment has fewer conditions to satisfy, which typically leads to a higher filter pass rate because more comments will meet the fewer criteria.
 3. **Calculation of Fetch Count with Keywords**
 The number of comments fetched ```F``` is calculated to ensure that the desired number of comments ```C``` is met after filtering. As the number of keywords increases, the estimated filter pass rate ```P``` will decrease, requiring more comments to be fetched.
-Formula:
-```𝐹 = 𝐶/𝑃```
-Where:
-```𝐹``` = Number of comments to fetch
-```𝐶``` = Number of comments requested by the user
-```𝑃``` = Estimated filter pass rate (inverse relationship with ```k``` keywords)
+    - Formula:
+      - ```𝐹 = 𝐶/𝑃```
+    - Where:
+      - ```𝐹``` = Number of comments to fetch
+      - ```𝐶``` = Number of comments requested by the user
+      - ```𝑃``` = Estimated filter pass rate (inverse relationship with ```k``` keywords)
 
 **Example**: If the user requests 1000 comments and the estimated filter pass rate is 0.2 with a certain number of keywords, the program will fetch: ```𝐹 = 1000/0.2 = 500```
 If the number of keywords increases and the filter pass rate drops to 0.1, the program will fetch: ```𝐹 = 1000/0.1 = 1000```
