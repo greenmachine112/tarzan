@@ -20,15 +20,16 @@ An inverse sentiment trading bot
 To connect Contrabot to an Alpaca brokerage account and place trades you must first get a key pair from Alpaca, and Reddit.
 1. Alpaca Registry:
     ```bash
-    (https://app.alpaca.markets/signup)
+    https://app.alpaca.markets/signup
     ```
 2. Reddit Registry:
    ```bash
-    (https://www.reddit.com/wiki/api/)
+    https://www.reddit.com/wiki/api/
     ```
-    Once you have the keys, load them into '.env', and verify 'config.py' and all files that import from it. 
-    NOTE: Unless you want to trade using real funds, make sure the base Alpaca url's host is 'paper-api.alpaca.markets'. This url uses demo funds that do not exist. I highly recommend not giving the bot your funds, unless you'd like to personally pay the salary of a Wall Street banker on accident like me.
-Example commands and expected output.
+After obtaining the keys, load them into the ```bash .env ``` file and verify the configurations in ```bash config.py ``` as well as any files that import from it. # Mention which files import
+**NOTE**: Unless you want to trade using real funds, make sure the base Alpaca url's host is 'paper-api.alpaca.markets'. This url uses demo funds that do not exist. I highly recommend not giving the bot your funds, unless you'd like to, personally, pay the salary of a Wall Street banker on accident like me.
+
+## Example commands and expected output.
 
 Configuration options.
 
