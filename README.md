@@ -74,9 +74,9 @@ The Reddit API's free tier specifies that you may not exceed 60 calls/minute. If
 1. Function: ```filterComments```
 2. Time Complexity: ```O(i * m * k)```
 3. Variables:
-    a. ```i```: Number of comments to filter
-    b. ```m```: Average length of each comment
-    c. ```k```: Number of search term variations
+    -  ```i```: Number of comments to filter
+    - ```m```: Average length of each comment
+    - ```k```: Number of search term variations
 4. Explanation: For each comment, the function converts the text to lowercase ```(O(m))```, and checks if any of the ```k``` variations are present (O(k)). Therefore, the time complexity for filtering one comment is ```O(m * k)```. Given ```i``` comments, the overall complexity is ```O(i * m * k)```
 
 ### Combined Complexity
