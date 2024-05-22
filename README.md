@@ -17,6 +17,7 @@ An automated trading bot that gathers text data from a specified subreddit, anal
 **NOTE**: Do not use this model for real trading, as this version suffers from time complexity issues. It averages a comment filter rate of 1.57 +- .4 comments per minute. This program is under active development, and this issue will be fixed in the future.
 
 To connect Contrabot to an Alpaca brokerage account and place trades you must first get a key pair from Alpaca, and Reddit.
+
 1. Alpaca Registry:
     ```bash
     https://app.alpaca.markets/signup
@@ -25,7 +26,17 @@ To connect Contrabot to an Alpaca brokerage account and place trades you must fi
    ```bash
     https://www.reddit.com/wiki/api/
     ```
+   
 After obtaining the keys, load them into the ```.env ``` file and verify the configurations in ```config.py ``` as well as any files that import from it.
+
+3. Navigate to source:
+   ```bash
+   cd C:\your-path\InverseWSB-Trading-Bot\src 
+   ```
+4. Run:
+   ```bash
+   python main.py
+   ```
 
 **NOTE**: Unless you want to trade using real funds, make sure the base Alpaca url's host is ```paper-api.alpaca.markets```. I highly recommend not giving the bot your funds, unless you'd like to, personally, pay the salary of a Wall Street banker on accident.
 
