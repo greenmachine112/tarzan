@@ -2,15 +2,15 @@
 An inverse sentiment trading bot
 
 ## Installation
-1. Clone the repository:
+  Clone the repository:
     ```bash
     git clone https://github.com/greenmachine112/Contrabot.git
     ```
-2. Navigate to the project directory:
+  Navigate to the project directory:
     ```bash
     cd Contrabot.git
     ```
-3. Install the required dependencies:
+  Install the required dependencies:
     ```bash
     pip install -r requirements.txt
     ```
