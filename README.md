@@ -74,9 +74,9 @@ The Reddit API's free tier specifies that you may not exceed 60 calls/minute. If
 1. Function: ```filterComments```
 2. Time Complexity: ```O(i * m * k)```
 3. Variables:
-    ```i```: Number of comments to filter
-    ```m```: Average length of each comment
-    ```k```: Number of search term variations
+    a. ```i```: Number of comments to filter
+    b. ```m```: Average length of each comment
+    c. ```k```: Number of search term variations
 4. Explanation: For each comment, the function converts the text to lowercase ```(O(m))```, and checks if any of the ```k``` variations are present (O(k)). Therefore, the time complexity for filtering one comment is ```O(m * k)```. Given ```i``` comments, the overall complexity is ```O(i * m * k)```
 
 ### Combined Complexity
@@ -89,9 +89,9 @@ The combined time complexity for fetching and filtering is as follows:
 When the number of keywords used in filtering increases, the filter pass rate tends to decrease. This is because each additional keyword introduces another condition that a comment must meet to pass the filter. Therefore, the more keywords you have, the fewer comments will typically match all the criteria.
 
 ### Impact of Keywords on Filter Pass Rate
-**More Keywords**: As the number of keywords increases, each comment has more conditions to satisfy. This generally leads to a lower filter pass rate because fewer comments will meet all the specified criteria.
-**Fewer Keywords**: With fewer keywords, each comment has fewer conditions to satisfy, which typically leads to a higher filter pass rate because more comments will meet the fewer criteria.
-**Calculation of Fetch Count with Keywords**
+1. **More Keywords**: As the number of keywords increases, each comment has more conditions to satisfy. This generally leads to a lower filter pass rate because fewer comments will meet all the specified criteria.
+1. **Fewer Keywords**: With fewer keywords, each comment has fewer conditions to satisfy, which typically leads to a higher filter pass rate because more comments will meet the fewer criteria.
+3. **Calculation of Fetch Count with Keywords**
 The number of comments fetched ```F``` is calculated to ensure that the desired number of comments ```C``` is met after filtering. As the number of keywords increases, the estimated filter pass rate ```P``` will decrease, requiring more comments to be fetched.
 Formula:
 ```𝐹 = 𝐶/𝑃```
