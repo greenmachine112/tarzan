@@ -1,10 +1,19 @@
 # Contrabot ![Static Badge](https://img.shields.io/badge/version-v1.0.0-green)
 An inverse sentiment trading bot
-Installation
-Dependencies
-Step-by-step guide on how to install the project and dependencies.
-clone the repo, cd into the directory and then pip install requirements.txt
 
+## Installation
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/greenmachine112/Contrabot.git
+    ```
+2. Navigate to the project directory:
+    ```bash
+    cd Contrabot.git
+    ```
+3. Install the required dependencies:
+    ```bash
+    pip install -r requirements.txt
+    ```
 Usage
 NOTE: Do not use this model for real trading, as this version suffers from speed issues. It averages a comment filter rate of 1.57 +- .4. This program is under active development, and this issue will be fixed in the future.
 Instructions on how to use the project.
