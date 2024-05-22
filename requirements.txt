@@ -6,3 +6,4 @@ schedule
 python-dotenv
 pytest
 requests
+tqdm
