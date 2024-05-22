@@ -27,7 +27,7 @@ To connect Contrabot to an Alpaca brokerage account and place trades you must fi
     https://www.reddit.com/wiki/api/
     ```
 After obtaining the keys, load them into the ```.env ``` file and verify the configurations in ```config.py ``` as well as any files that import from it.
-**NOTE**: Unless you want to trade using real funds, make sure the base Alpaca url's host is 'paper-api.alpaca.markets'. This url uses demo funds that do not exist. I highly recommend not giving the bot your funds, unless you'd like to, personally, pay the salary of a Wall Street banker on accident like me.
+**NOTE**: Unless you want to trade using real funds, make sure the base Alpaca url's host is ```paper-api.alpaca.markets```. I highly recommend not giving the bot your funds, unless you'd like to, personally, pay the salary of a Wall Street banker on accident.
 
 ## Example commands and expected output.
 
