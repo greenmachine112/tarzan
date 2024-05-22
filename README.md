@@ -85,7 +85,7 @@ The combined time complexity for fetching and filtering is as follows:
 2. Filtering: ```O(i * m * k)```
 3. Total: ```O(N + i * m * k)```
 
-# Understanding Filter Pass Rate and Keywords
+## Understanding Filter Pass Rate and Keywords
 When the number of keywords used in filtering increases, the filter pass rate tends to decrease. This is because each additional keyword introduces another condition that a comment must meet to pass the filter. Therefore, the more keywords you have, the fewer comments will typically match all the criteria.
 
 ### Impact of Keywords on Filter Pass Rate
