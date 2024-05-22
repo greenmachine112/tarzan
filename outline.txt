@@ -152,14 +152,6 @@ Validation: Regularly review monitoring data and logs to ensure the bot is opera
 Initializing the bot: 
 Contrabot adapts based on admin preference.
 
-searchParams = {
-    comLimit = 500 #Reddit free tier's maximum CPM = 100. Should be plenty. Can retrieve up to 500 comments per call. 
-    recency = 'all'
-    minKarma = '0'
-    sortBy = 'all'
-    minUpvote = '0' 
-}
-
 searchMode = input("Would you like to bulk scrape(1) comments or search for a specific stock(2)?")
 switch (searchMode)
 If 1 {
