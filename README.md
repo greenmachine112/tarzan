@@ -1,6 +1,5 @@
 # Contrabot ![Static Badge](https://img.shields.io/badge/version-v1.0.0-green)
-An inverse sentiment trading bot
-
+An automated trading bot that gathers text data from a specified subreddit, analyzes sentiment with the Vader library, and places trades to an Alpaca brokerage account via the Alpaca Trading API based on inverse popular sentiment. It aims to capitalize on market overcorrections and uneducated investing.
 ## Installation
 1. Clone the repository:
     ```bash
