@@ -23,7 +23,7 @@ To connect Contrabot to an Alpaca brokerage account and place trades you must fi
     https://app.alpaca.markets/signup
     ```
 2. Reddit Registry:
-   ```bash
+    ```bash
     https://www.reddit.com/wiki/api/
     ```
    
