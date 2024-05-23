@@ -119,7 +119,8 @@ If the number of keywords increases and the filter pass rate drops to 0.1, the p
 The ```.json``` file generated from the fetched and filtered comments can be quite large. 
 ### Example 
 ![image](https://i.postimg.cc/G2s9V3Wf/example-output.png)
-Here are some important points to understand about the structure and content of this file:.
+
+Here are some important points to understand about the structure and content of this file:
 1. **File Size**: The ```.json``` file can have thousands of lines due to the detailed structure of each comment.
 2. **Comment Breakdown**: Each comment occupies multiple lines in the ```.json``` file. Typically, a single comment is represented by 6 lines, including metadata like ```timestamp```, ```karma```, ```upvotes```, and ```comment text```.
 3. **Estimating Total Comments**: To quickly estimate the total number of comments in your ```.json``` file, you can use the following approximation:
