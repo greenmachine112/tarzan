@@ -1,0 +1,3 @@
+Search values for dataset.json:
+- Ticker: $NVDA
+- Variations: jensen, huang, nvidia, blackwell, gpu, data center, cuda, geforce, rtx
