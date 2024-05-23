@@ -116,7 +116,9 @@ The number of comments fetched ```F``` is calculated to ensure that the desired 
 If the number of keywords increases and the filter pass rate drops to 0.1, the program will fetch: ```𝐹 = 1000/0.1 = 1000```
 
 ## .json Formatting
-The ```.json``` file generated from the fetched and filtered comments can be quite large. Here are some important points to understand about the structure and content of this file:
+The ```.json``` file generated from the fetched and filtered comments can be quite large. 
+Example ![image](https://imgur.com/a/HqFCBOd)
+Here are some important points to understand about the structure and content of this file:
 1. **File Size**: The ```.json``` file can have thousands of lines due to the detailed structure of each comment.
 2. **Comment Breakdown**: Each comment occupies multiple lines in the ```.json``` file. Typically, a single comment is represented by 6 lines, including metadata like ```timestamp```, ```karma```, ```upvotes```, and ```comment text```.
 3. **Estimating Total Comments**: To quickly estimate the total number of comments in your ```.json``` file, you can use the following approximation:
@@ -129,6 +131,8 @@ To analyze the sentiment of comment bodies, they are run through the ```vaderSen
 The sentiment analysis has been updated to, in addition to single variable analysis, weigh comments based on the number of upvotes. This means that comments with more upvotes have a greater influence on the overall sentiment score. ```weightedOverallSentiment``` is calculated by multiplying the vader output by the ```score``` value of a given comment. This ensures that comments with higher upvotes, which likely represent more widely held opinions, have a greater impact on the overall sentiment analysis.
 
 ### Example Output
+![image](https://imgur.com/a/dLEWvx4)
+
 The updated ```sentiment_analysis.py``` now provides the following outputs:
 
 **Number of each sentiment type**: Displays the count of positive, neutral, and negative comments.
