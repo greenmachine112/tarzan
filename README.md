@@ -142,7 +142,7 @@ The updated ```sentiment_analysis.py``` now provides the following outputs:
 **Weighted overall sentiment**: Shows the overall sentiment weighted by the number of upvotes.
 **Stock purchase side**: Recommends a trading action (BUY/CALL or SELL/SHORT) based on the inverse of the weighted overall sentiment.
 
-NOTE: The inverse trading strategy may be reversed, or otherwise modified, simply by setting ```stockPurchaseSide``` equal to the side that correspond with the popular sentiment
+NOTE: The inverse trading strategy may be reversed, or otherwise modified, by modifying ```stockPurchaseSide``` in ```sentiment_analyzer.py```
 
 ## Profanity 
 Comments fetched from subreddits, especially from communities like ```r/wallstreetbets```, may contain profane or offensive language. These communities are known for their unfiltered and often crude discussions. They refer to themselves as 'apes', which gives you an idea of their vernacular. Users should be prepared for potentially explicit content when reviewing the fetched comments. **Viewer discretion is advised**
