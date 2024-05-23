@@ -116,7 +116,7 @@ The number of comments fetched ```F``` is calculated to ensure that the desired 
 If the number of keywords increases and the filter pass rate drops to 0.1, the program will fetch: ```𝐹 = 1000/0.1 = 1000```
 
 ## .json Formatting
-The ```.json``` file generated from the fetched and filtered comments can be quite large. 
+The ```.json``` file containing the filtered data can be quite large. 
 ### Example 
 ![image](https://i.postimg.cc/G2s9V3Wf/example-output.png)
 
