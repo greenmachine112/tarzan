@@ -29,7 +29,7 @@ def main():
     global recency, minUpvotes, minKarma
     while True:
         print("------------")
-        print(f"Enter command: {YELLOW}", end="")
+        print(f"Enter command: {BLUE}", end="")
         command = input().strip()
         print(f"{RESET}", end="")
 
@@ -41,7 +41,8 @@ def main():
                 print(f"{RED}Failed to create Reddit client{RESET}")
 
         elif command.startswith("!getAsset"):
-            assetId = command.split()[1].strip()
+            assetId = command.split()[1].strip('$')
+    
             if assetId.isalpha():
                 try:
                     result = getAsset(assetId)
@@ -49,7 +50,7 @@ def main():
                 except Exception as e:
                     print(f"Error: {RED}{e}{RESET}")
             else:
-                print(f"{RED}Invalid input. Only alphabetic characters.{RESET}")
+                print(f"{RED}Invalid input. Only alphabetic characters are allowed.{RESET}")
 
         elif command.startswith("!recency"):
             try:
@@ -89,11 +90,11 @@ def main():
             print(f"{RED}Unknown command. Available commands: !reddit, !getAsset, !recency <days>, !minUpvote <upvotes>, !minKarma <karma>, !quit{RESET}")
 
 def handleRedditCommand(reddit):
-    print(f"Enter subreddit name: {PURPLE}", end="")
+    print(f"Enter subreddit name: {BLUE}", end="")
     subredditName = input().strip()
     print(f"{RESET}", end="")
     
-    print(f"Enter a stock ticker (e.g., $AAPL): {PURPLE}", end="")
+    print(f"Enter a stock ticker (e.g., $AAPL): {BLUE}", end="")
     ticker = input()
     print(f"{RESET}", end="")
     if not ticker.startswith("$"):
@@ -103,7 +104,7 @@ def handleRedditCommand(reddit):
     variations = []
     addVariations = input("Do you want to add variations? (yes/no): ").lower() #case insensitive
     if addVariations == 'yes':
-        print(f"Enter each variation on a new line. '/n' to submit{PURPLE}")
+        print(f"Enter each variation on a new line. '/n' to submit{BLUE}")
         while True:
             variation = input()
             if variation.lower() == '/n':
