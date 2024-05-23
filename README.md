@@ -135,13 +135,6 @@ The sentiment analysis has been updated to, in addition to single variable analy
 ### Example Output
 ![image](https://i.postimg.cc/pLq9n6Qs/sentiment-output.png)
 
-The updated ```sentiment_analysis.py``` now provides the following outputs:
-
-**Number of each sentiment type**: Displays the count of positive, neutral, and negative comments.
-**Unweighted overall sentiment**: Shows the overall sentiment without considering the upvotes.
-**Weighted overall sentiment**: Shows the overall sentiment weighted by the number of upvotes.
-**Stock purchase side**: Recommends a trading action (BUY/CALL or SELL/SHORT) based on the inverse of the weighted overall sentiment.
-
 NOTE: The inverse trading strategy may be reversed, or otherwise modified, by modifying ```stockPurchaseSide``` in ```sentiment_analyzer.py```
 
 ## Profanity 
