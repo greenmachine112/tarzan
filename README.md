@@ -122,7 +122,7 @@ The ```.json``` file containing the filtered data can be quite large.
 
 Here are some important points to understand about the structure and content of this file:
 1. **File Size**: The ```.json``` file can have thousands of lines due to the detailed structure of each comment.
-2. **Comment Breakdown**: Each comment occupies multiple lines in the ```.json``` file. Typically, a single comment is represented by 6 lines, including metadata like ```timestamp```, ```karma```, ```upvotes```, and ```comment text```.
+2. **Comment Breakdown**: Each comment occupies multiple lines in the ```.json``` file. Typically, a single comment is represented by 6 lines, including metadata like ```timestamp```, ```karma```, ```score```, and ```body```.
 3. **Estimating Total Comments**: To quickly estimate the total number of comments in your ```.json``` file, you can use the following approximation:
 ```totalComments = linesInJson / 6```
 
