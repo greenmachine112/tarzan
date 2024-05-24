@@ -6,6 +6,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from trade.assets import getAsset
 from clients.reddit_client import createRedditClient, fetchSubredditComments
 from src.styles import GREEN, RED, BLUE, CYAN, PURPLE, YELLOW, RESET
+from clients.news_client import fetchNews
 
 print("Contrabot V1.0.0")
 print("An inverse sentiment trading bot")
@@ -15,13 +16,14 @@ print("------------")
 print("Specify Reddit Search: !searchReddit")
 print("Advanced Search Settings: !recency <days>, !minUpvote <upvotes>, !minKarma <karma>")
 #print("Orders: !closeOrder, !getOrder, !modOrder, !sendOrder")
-print("Assets: !getAsset")
+print("Assets: !getAsset <ticker>")
 #print("Positions: !closeAllPos, !closePos, !getAllPos, !getPos")
 #print("Full Docs: !docs")
+print("Fetch News: !fetchNews <ticker> <sortMethod> <fromTime> <toTime>")
 print("Terminate Program: !quit")
 
-#default params
-recency = 1  #day(s)
+# Default params
+recency = 1  # day(s)
 minUpvotes = 0
 minKarma = 0
 
@@ -80,14 +82,21 @@ def main():
                 else:
                     print(f"{RED}Minimum author karma must be 0 or greater.{RESET}")
             except (ValueError, IndexError):
-                print(f"{RED}Invalid input for minimum authot karma. Usage: !minKarma <karma>{RESET}")
+                print(f"{RED}Invalid input for minimum author karma. Usage: !minKarma <karma>{RESET}")
+
+        elif command.startswith("!fetchNews"):
+            try:
+                _, ticker, sortMethod, fromTime, toTime = command.split()
+                fetchNews(ticker, sortMethod, fromTime, toTime)
+            except ValueError:
+                print(f"{RED}Invalid input for fetching news. Usage: !fetchNews <ticker> <sortMethod> <fromTime> <toTime> <outputPath>{RESET}")
 
         elif command == "!quit":
             print(f"{GREEN}Exiting program{RESET}")
             break
 
         else:
-            print(f"{RED}Unknown command. Available commands: !reddit, !getAsset, !recency <days>, !minUpvote <upvotes>, !minKarma <karma>, !quit{RESET}")
+            print(f"{RED}Unknown command. Available commands: !searchReddit, !getAsset, !recency <days>, !minUpvote <upvotes>, !minKarma <karma>, !getSecForms <ticker>, !fetchNews <ticker> <sortMethod> <fromTime> <toTime> <outputPath>, !quit{RESET}")
 
 def handleRedditCommand(reddit):
     print(f"Enter subreddit name: {BLUE}", end="")
@@ -116,9 +125,9 @@ def handleRedditCommand(reddit):
         comLimit = int(input("Enter number of comments to analyze: ").strip())
         comments = fetchSubredditComments(reddit, subredditName, ticker, variations, comLimit, recency, minUpvotes, minKarma)
         if comments:
-            with open('dataset.json', 'w') as file:
+            with open('datasets/reddit.json', 'w') as file:
                 json.dump(comments, file, indent=4)
-            print(f"{GREEN}Comments saved to dataset.json{RESET}")
+            print(f"{GREEN}Comments saved to reddit.json{RESET}")
         else:
             print(f"{RED}No comments found matching the criteria{RESET}")
     except ValueError:
