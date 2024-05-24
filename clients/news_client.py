@@ -16,7 +16,7 @@ def fetchNews(ticker, sortMethod, fromTime, toTime):
         q=ticker,
         language='en',
         sort_by=sortMethod,
-        domains='biztoc.com',
+        domains='biztoc.com', #biztoc is a news aggregate site. This one domain gives access to over 15 publishers
         from_param=fromTime,
         to=toTime
     )
