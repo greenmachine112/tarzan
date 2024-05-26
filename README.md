@@ -16,7 +16,7 @@ An automated trading bot that gathers text data from a specified subreddit, anal
 ## Usage
 **NOTE**: Do not use this model for real trading, as this version suffers from time complexity issues. It averages a comment filter rate of 1.57 +- .4 comments per minute. This program is under active development, and this issue will be fixed in the future.
 
-To connect Contrabot to an Alpaca brokerage account and place trades you must first get a key pair from Alpaca, and Reddit.
+To connect Tarzan to an Alpaca brokerage account and place trades you must first get a key pair from Alpaca, and Reddit.
 
 1. Alpaca Registry:
     ```bash
@@ -120,10 +120,10 @@ The ```.json``` files containing the filtered data can be quite large.
 ### Example 
 ![image](https://i.postimg.cc/G2s9V3Wf/example-output.png)
 
-Here are some important points to understand about the structure and content of this file:
-1. **File Size**: The ```.json``` file can have thousands of lines due to the detailed structure of each comment.
-2. **Comment Breakdown**: Each comment occupies multiple lines in the ```.json``` file. Typically, a single comment is represented by 6 lines, including metadata like ```timestamp```, ```karma```, ```score```, and ```body```.
-3. **Estimating Total Comments**: To quickly estimate the total number of comments in your ```.json``` file, you can use the following approximation:
+Here are some important points to understand about the structure and content of these files:
+1. **File Size**: The ```.json``` filse can have thousands of lines due to the detailed structure of each comment.
+2. **Comment Breakdown**: Each comment occupies multiple lines in the ```.json``` files. Typically, a single comment is represented by 6 lines, including metadata like ```timestamp```, ```karma```, ```score```, and ```body```.
+3. **Estimating Total Comments**: To quickly estimate the total number of comments in your ```.json``` files, you can use the following approximation:
 ```totalComments = linesInJson / 6```
 
 ## Sentiment
