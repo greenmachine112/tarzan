@@ -10,6 +10,7 @@ from src.styles import GREEN, RED, RESET
 def fetchNews(ticker, sortMethod, fromTime, toTime):
     outputPath = 'datasets/news.json'
     newsapi = NewsApiClient(api_key=NEWS_API_KEY)
+    print(f"{GREEN}News client created successfully")
 
     #All news within a given time frame, from all sources
     everything = newsapi.get_everything(

@@ -4,6 +4,7 @@ import sys
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from src.config import APCA_API_KEY_ID, APCA_API_SECRET_KEY
+from src.styles import GREEN, RESET
 
 def makeRequest(method, endpoint, headers=None, params=None, data=None):
     url = endpoint    
@@ -12,7 +13,8 @@ def makeRequest(method, endpoint, headers=None, params=None, data=None):
         'APCA-API-SECRET-KEY': APCA_API_SECRET_KEY,
         'accept': 'application/json',
     }
-    
+    print(f"{GREEN}Alpaca client created successfully{RESET}")
+
     if headers:
         default_headers.update(headers)
     

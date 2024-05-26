@@ -12,6 +12,6 @@ from clients.alpaca_client import makeRequest
 APCA_BASE_URL = os.getenv("APCA_BASE_URL")
 
 #By symbol/ticker only. For crypto, coin symbol must be succeeded by fiat currency symbol. Eg) Bitcoin = BTCUSD
-def getAsset(asset_id_or_symbol):
-    endpoint = f"{APCA_BASE_URL}/assets/{asset_id_or_symbol}"  #Endpoint
+def getAsset(assetId_or_Symbol):
+    endpoint = f"{APCA_BASE_URL}/assets/{assetId_or_Symbol}"  #Endpoint
     return makeRequest('GET', endpoint)

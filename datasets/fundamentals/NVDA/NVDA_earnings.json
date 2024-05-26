@@ -1,0 +1,91 @@
+{
+    "symbol": "NVDA",
+    "annualEarnings": [
+        {
+            "fiscalDateEnding": "2024-04-30",
+            "reportedEPS": "6.12"
+        },
+        {
+            "fiscalDateEnding": "2024-01-31",
+            "reportedEPS": "12.97"
+        },
+        {
+            "fiscalDateEnding": "2023-01-31",
+            "reportedEPS": "3.33"
+        }
+    ],
+    "quarterlyEarnings": [
+        {
+            "fiscalDateEnding": "2024-04-30",
+            "reportedDate": "2024-05-22",
+            "reportedEPS": "6.12",
+            "estimatedEPS": "5.57",
+            "surprise": "0.55",
+            "surprisePercentage": "9.8743",
+            "reportTime": "post-market"
+        },
+        {
+            "fiscalDateEnding": "2024-01-31",
+            "reportedDate": "2024-02-21",
+            "reportedEPS": "5.16",
+            "estimatedEPS": "4.29",
+            "surprise": "0.87",
+            "surprisePercentage": "20.2797",
+            "reportTime": "post-market"
+        },
+        {
+            "fiscalDateEnding": "2023-10-31",
+            "reportedDate": "2023-11-21",
+            "reportedEPS": "4.02",
+            "estimatedEPS": "3.37",
+            "surprise": "0.65",
+            "surprisePercentage": "19.2878",
+            "reportTime": "post-market"
+        },
+        {
+            "fiscalDateEnding": "2023-07-31",
+            "reportedDate": "2023-08-23",
+            "reportedEPS": "2.7",
+            "estimatedEPS": "2.09",
+            "surprise": "0.61",
+            "surprisePercentage": "29.1866",
+            "reportTime": "post-market"
+        },
+        {
+            "fiscalDateEnding": "2023-04-30",
+            "reportedDate": "2023-05-24",
+            "reportedEPS": "1.09",
+            "estimatedEPS": "0.92",
+            "surprise": "0.17",
+            "surprisePercentage": "18.4783",
+            "reportTime": "post-market"
+        },
+        {
+            "fiscalDateEnding": "2023-01-31",
+            "reportedDate": "2023-02-22",
+            "reportedEPS": "0.88",
+            "estimatedEPS": "0.81",
+            "surprise": "0.07",
+            "surprisePercentage": "8.642",
+            "reportTime": "post-market"
+        },
+        {
+            "fiscalDateEnding": "2022-10-31",
+            "reportedDate": "2022-11-16",
+            "reportedEPS": "0.58",
+            "estimatedEPS": "0.69",
+            "surprise": "-0.11",
+            "surprisePercentage": "-15.942",
+            "reportTime": "post-market"
+        },
+        {
+            "fiscalDateEnding": "2022-07-31",
+            "reportedDate": "2022-08-24",
+            "reportedEPS": "0.51",
+            "estimatedEPS": "1.26",
+            "surprise": "-0.75",
+            "surprisePercentage": "-59.5238",
+            "reportTime": "post-market"
+        }
+    ]
+}

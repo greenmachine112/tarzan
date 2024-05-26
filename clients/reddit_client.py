@@ -6,8 +6,43 @@ import time
 from tqdm import tqdm
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from src.styles import GREEN, RED, BLUE, CYAN, RESET
+from src.styles import GREEN, RED, CYAN, RESET
 from src.config import REDDIT_CLIENT_ID, REDDIT_CLIENT_SECRET, REDDIT_USER_AGENT
+
+def decodeUnicodeEscapes(inputString):
+    import re
+
+    def replaceEscape(match):
+        if match.group(1):
+            return chr(int(match.group(1), 16))  #\xXX
+        elif match.group(2):
+            return chr(int(match.group(2), 16))  #\uXXXX
+        elif match.group(3):
+            return chr(int(match.group(3), 16))  #\UXXXXXXXX
+        elif match.group(4):
+            return chr(int(match.group(4), 8))   #\ooo (octal)
+        elif match.group(5) == 'n':
+            return '\n'  #Newline
+        elif match.group(5) == 't':
+            return '\t'  #Tab
+        elif match.group(5) == 'r':
+            return '\r'  #Carriage return
+        elif match.group(5) == '\\':
+            return '\\'  #Backslash
+        return match.group(0)  #Should not reach here
+
+    #Regular expression to find escape sequences
+    unicodeEscapePattern = re.compile(
+        r'\\x([0-9a-fA-F]{2})|'  #\xXX
+        r'\\u([0-9a-fA-F]{4})|'  #\uXXXX
+        r'\\U([0-9a-fA-F]{8})|'  #\UXXXXXXXX
+        r'\\([0-7]{1,3})|'       #\ooo
+        r'\\(.)'                 #Special characters: \n, \t, \r, \\
+    )
+
+    #Replace all escape sequences in the input string
+    decodedString = unicodeEscapePattern.sub(replaceEscape, inputString)
+    return decodedString
 
 def createRedditClient():
     try:
@@ -53,7 +88,7 @@ def filterComments(comments, searchTermsSet, timeLimit, minUpvotes, minKarma, bo
                 authorKarma >= minKarma):
                 if any(term in commentBodyLower for term in searchTermsSet):
                     commentData = {
-                        "body": comment.body,
+                        "body": decodeUnicodeEscapes(comment.body),
                         "created_utc": datetime.utcfromtimestamp(comment.created_utc).strftime('%Y-%m-%d %H:%M:%S'),
                         "score": comment.score,
                         "karma": authorKarma
@@ -110,7 +145,7 @@ if __name__ == "__main__":
             comments = fetchSubredditComments(reddit, subredditName, ticker, variations, comLimit, recency, minUpvotes, minKarma)
             if comments:
                 for i, comment in enumerate(comments, start=1):
-                    print(f"{BLUE}COMMENT {i}{RESET}: {comment['body']}")
+                    print(f"{CYAN}COMMENT {i}{RESET}: {comment['body']}")
                     print(f"    {CYAN}Created: {comment['created_utc']}, Upvotes: {comment['score']}, Karma: {comment['karma']}{RESET}")
             else:
                 print(f"{RED}No comments found matching the criteria{RESET}")

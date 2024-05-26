@@ -1,20 +1,20 @@
-#standard terminal output
+#Standard terminal output
 RESET = "\033[0m"
 
-#successes, value changes
+#Successes, value changes
 GREEN = "\033[32m"
 
-#errors
+#Errors
 RED = "\033[31m"
 
-#return value headers
-BLUE = "\033[34m"
-
-#return value metadata
+#Commands
 CYAN = "\033[36m"
 
-#commands
-YELLOW = "\33[33m"
+#Info
+YELLOW = "\033[1;93m"
 
-#variations
-PURPLE = "\33[35m"
+#Response variables
+DARK_GREY = "\033[90m"
+
+#Response values
+GREY = "\033[0;37m"

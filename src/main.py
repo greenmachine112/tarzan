@@ -5,25 +5,24 @@ import json
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from trade.assets import getAsset
 from clients.reddit_client import createRedditClient, fetchSubredditComments
-from src.styles import GREEN, RED, BLUE, CYAN, PURPLE, YELLOW, RESET
+from src.styles import GREEN, RED, CYAN, DARK_GREY, GREY, RESET
 from clients.news_client import fetchNews
+from clients.av_client import getFundamentals
 
-print("Contrabot V1.0.0")
-print("An inverse sentiment trading bot")
+print("Tarzan V1.0.0")
+print("A swing trade bot")
 print("------------")
 print("Command list")
 print("------------")
-print("Specify Reddit Search: !searchReddit")
+print("Specify Reddit Search: !getReddit")
 print("Advanced Search Settings: !recency <days>, !minUpvote <upvotes>, !minKarma <karma>")
-#print("Orders: !closeOrder, !getOrder, !modOrder, !sendOrder")
-print("Assets: !getAsset <ticker>")
-#print("Positions: !closeAllPos, !closePos, !getAllPos, !getPos")
-#print("Full Docs: !docs")
-print("Fetch News: !fetchNews <ticker> <sortMethod> <fromTime> <toTime>")
+print("Asset Information: !getAsset <ticker>")
+print("Fetch News: !getNews <ticker> <sortMethod> <fromTime> <toTime>")
+print("Fundamental Analysis: !getFundamentals <ticker>")
 print("Terminate Program: !quit")
 
-# Default params
-recency = 1  # day(s)
+#Default params
+recency = 1  #day(s)
 minUpvotes = 0
 minKarma = 0
 
@@ -31,11 +30,11 @@ def main():
     global recency, minUpvotes, minKarma
     while True:
         print("------------")
-        print(f"Enter command: {BLUE}", end="")
+        print(f"Enter command: {CYAN}", end="")
         command = input().strip()
         print(f"{RESET}", end="")
 
-        if command.startswith("!searchReddit"):
+        if command.startswith("!getReddit"):
             reddit = createRedditClient()
             if reddit:
                 handleRedditCommand(reddit)
@@ -48,7 +47,8 @@ def main():
             if assetId.isalpha():
                 try:
                     result = getAsset(assetId)
-                    print(f"{BLUE}Asset Information{RESET}:", result)
+                    print(f"{DARK_GREY}Asset Information: {RESET}")
+                    colorizeJSON(result)
                 except Exception as e:
                     print(f"Error: {RED}{e}{RESET}")
             else:
@@ -84,26 +84,37 @@ def main():
             except (ValueError, IndexError):
                 print(f"{RED}Invalid input for minimum author karma. Usage: !minKarma <karma>{RESET}")
 
-        elif command.startswith("!fetchNews"):
+        elif command.startswith("!getNews"):
             try:
                 _, ticker, sortMethod, fromTime, toTime = command.split()
                 fetchNews(ticker, sortMethod, fromTime, toTime)
             except ValueError:
-                print(f"{RED}Invalid input for fetching news. Usage: !fetchNews <ticker> <sortMethod> <fromTime> <toTime> <outputPath>{RESET}")
+                print(f"{RED}Invalid input for fetching news. Usage: !getNews <ticker> <sortMethod> <fromTime> <toTime>{RESET}")
+
+        elif command.startswith("!getFundamentals"):
+            try:
+                _, ticker = command.split()
+                ticker = ticker.replace('$', '')
+                if ticker.isalpha():
+                    getFundamentals(ticker)
+                else:
+                    print(f"{RED}Invalid ticker format. Only alphabetic characters are allowed.{RESET}")
+            except ValueError:
+                print(f"{RED}Invalid input for getting fundamentals. Usage: !getFundamentals <ticker>{RESET}")
 
         elif command == "!quit":
             print(f"{GREEN}Exiting program{RESET}")
             break
 
         else:
-            print(f"{RED}Unknown command. Available commands: !searchReddit, !getAsset, !recency <days>, !minUpvote <upvotes>, !minKarma <karma>, !getSecForms <ticker>, !fetchNews <ticker> <sortMethod> <fromTime> <toTime> <outputPath>, !quit{RESET}")
+            print(f"{RED}Unknown command. Available commands: !getReddit, !getAsset, !recency <days>, !minUpvote <upvotes>, !minKarma <karma>, !getNews <ticker> <sortMethod> <fromTime> <toTime>, !quit{RESET}")
 
 def handleRedditCommand(reddit):
-    print(f"Enter subreddit name: {BLUE}", end="")
+    print(f"Enter subreddit name: {CYAN}", end="")
     subredditName = input().strip()
     print(f"{RESET}", end="")
     
-    print(f"Enter a stock ticker (e.g., $AAPL): {BLUE}", end="")
+    print(f"Enter a stock ticker (e.g., $AAPL): {CYAN}", end="")
     ticker = input()
     print(f"{RESET}", end="")
     if not ticker.startswith("$"):
@@ -111,9 +122,10 @@ def handleRedditCommand(reddit):
         return
 
     variations = []
-    addVariations = input("Do you want to add variations? (yes/no): ").lower() #case insensitive
+    addVariations = input(f"Do you want to add variations? (yes/no): {CYAN}").lower() #case insensitive
+    print(f"{RESET}", end="")
     if addVariations == 'yes':
-        print(f"Enter each variation on a new line. '/n' to submit{BLUE}")
+        print(f"Enter each variation on a new line. '/n' to submit{CYAN}")
         while True:
             variation = input()
             if variation.lower() == '/n':
@@ -122,7 +134,8 @@ def handleRedditCommand(reddit):
 
     print(f"{GREEN}Searching Reddit for {ticker} and variations: {variations} in subreddit: {subredditName}{RESET}")
     try:
-        comLimit = int(input("Enter number of comments to analyze: ").strip())
+        comLimit = int(input(f"Enter number of comments to analyze: {CYAN}").strip())
+        print(f"{RESET}", end="")
         comments = fetchSubredditComments(reddit, subredditName, ticker, variations, comLimit, recency, minUpvotes, minKarma)
         if comments:
             with open('datasets/reddit.json', 'w') as file:
@@ -132,6 +145,28 @@ def handleRedditCommand(reddit):
             print(f"{RED}No comments found matching the criteria{RESET}")
     except ValueError:
         print(f"{RED}Invalid input for number of comments{RESET}")
+
+def colorizeJSON(data, indent=0):
+    spacing = ' ' * indent
+    if isinstance(data, dict):
+        print(f"{spacing}{{")
+        for i, (key, value) in enumerate(data.items()):
+            comma = "," if i < len(data) - 1 else ""
+            print(f"{spacing}  {DARK_GREY}{key}{RESET}: ", end="")
+            colorizeJSON(value, indent + 2)
+            print(comma)
+        print(f"{spacing}}}")
+    elif isinstance(data, list):
+        print(f"{spacing}[")
+        for i, item in enumerate(data):
+            comma = "," if i < len(data) - 1 else ""
+            colorizeJSON(item, indent + 2)
+            print(comma)
+        print(f"{spacing}]")
+    elif isinstance(data, str):
+        print(f"{GREY}\"{data}\"{RESET}", end="")
+    else:
+        print(f"{GREY}{data}{RESET}", end="")
 
 if __name__ == "__main__":
     main()
