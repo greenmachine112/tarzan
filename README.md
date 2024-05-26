@@ -3,11 +3,11 @@ An automated trading bot that gathers text data from a specified subreddit, anal
 ## Installation
 1. Clone the repository:
     ```bash
-    git clone https://github.com/greenmachine112/Contrabot.git
+    git clone https://github.com/greenmachine112/tarzan.git
     ```
 2. Navigate to the project directory:
     ```bash
-    cd Contrabot.git
+    cd tarzan.git
     ```
 3. Install the required dependencies:
     ```bash
