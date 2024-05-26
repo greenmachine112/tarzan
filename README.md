@@ -16,7 +16,7 @@ An automated trading bot that gathers text data from a specified subreddit, anal
 ## Usage
 **NOTE**: Do not use this model for real trading, as this version suffers from time complexity issues. It averages a comment filter rate of 1.57 +- .4 comments per minute. This program is under active development, and this issue will be fixed in the future.
 
-To connect Contrabot to an Alpaca brokerage account and place trades you must first get a key pair from Alpaca, and Reddit.
+To connect Tarzan to an Alpaca brokerage account and place trades you must first get a key pair from Alpaca, and Reddit.
 
 1. Alpaca Registry:
     ```bash
